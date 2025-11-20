@@ -21,8 +21,13 @@
     <div class="container">
         <div class="converter-card glass">
             <header>
-                <h1>Currency Converter</h1>
-                <p class="subtitle">Live Exchange Rates</p>
+                <div class="header-content">
+                    <div>
+                        <h1>Currency Converter</h1>
+                        <p class="subtitle">Live Exchange Rates</p>
+                    </div>
+                    <button id="lang-toggle" class="lang-toggle">中</button>
+                </div>
             </header>
 
             <div class="converter-body">
@@ -89,18 +94,22 @@
             </div>
 
             <footer>
-                <div class="update-info">
-                    <span class="dot"></span>
-                    <span id="last-updated">Updating...</span>
+                <div class="footer-row">
+                    <div class="update-info">
+                        <span class="dot"></span>
+                        <span id="last-updated">Updating...</span>
+                    </div>
+                    <div class="auto-update-section">
+                        <div class="auto-update-toggle">
+                            <label class="switch">
+                                <input type="checkbox" id="auto-update" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <span class="auto-update-text">Auto-update (1m)</span>
+                    </div>
                 </div>
                 <div id="rate-source" class="source-info">Source: Connecting...</div>
-                <div class="auto-update-toggle">
-                    <label class="switch">
-                        <input type="checkbox" id="auto-update" checked>
-                        <span class="slider round"></span>
-                    </label>
-                    <span>Auto-update (1m)</span>
-                </div>
             </footer>
         </div>
     </div>

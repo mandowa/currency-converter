@@ -106,7 +106,19 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.header-content>div {
+    flex: 1;
+    min-width: 0;
 }
 
 h1 {
@@ -120,6 +132,34 @@ h1 {
     color: var(--text-light);
     font-size: 14px;
     font-weight: 400;
+}
+
+.lang-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 44px;
+    text-align: center;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.lang-toggle:active {
+    transform: translateY(0);
 }
 
 /* Inputs */
@@ -244,11 +284,19 @@ select:focus {
 
 /* Footer */
 footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    gap: 16px;
 }
 
 .update-info {
@@ -263,7 +311,8 @@ footer {
     font-size: 10px;
     color: var(--text-light);
     opacity: 0.8;
-    margin-top: 4px;
+    margin: 0;
+    padding: 0;
 }
 
 .dot {
@@ -289,13 +338,24 @@ footer {
     }
 }
 
-/* Toggle Switch */
+/* Toggle Switch Section */
+.auto-update-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .auto-update-toggle {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 12px;
+}
+
+.auto-update-text {
+    font-size: 10px;
     color: var(--text-light);
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
 .switch {

@@ -1,3 +1,140 @@
+// Translations
+const translations = {
+    en: {
+        title: "Currency Converter",
+        subtitle: "Live Exchange Rates",
+        amount: "Amount",
+        from: "From",
+        to: "To",
+        swapCurrencies: "Swap currencies",
+        conversionRate: "Conversion Rate",
+        lastUpdated: "Last Updated",
+        autoUpdate: "Auto-update (1m)",
+        source: "Source",
+        sourceBot: "Bank of Taiwan (Mid-Market Rate)",
+        sourceMock: "Mock Data",
+        updating: "Updating...",
+        offlineMode: "Offline Mode (Mock Data)",
+        connecting: "Connecting...",
+        usdName: "USD - US Dollar",
+        eurName: "EUR - Euro",
+        gbpName: "GBP - British Pound",
+        jpyName: "JPY - Japanese Yen",
+        twdName: "TWD - New Taiwan Dollar",
+        cnyName: "CNY - Chinese Yuan",
+        krwName: "KRW - South Korean Won",
+        audName: "AUD - Australian Dollar",
+        cadName: "CAD - Canadian Dollar",
+        chfName: "CHF - Swiss Franc",
+        hkdName: "HKD - Hong Kong Dollar",
+        sgdName: "SGD - Singapore Dollar"
+    },
+    zh: {
+        title: "貨幣轉換器",
+        subtitle: "即時匯率",
+        amount: "金額",
+        from: "從",
+        to: "到",
+        swapCurrencies: "交換貨幣",
+        conversionRate: "轉換率",
+        lastUpdated: "最後更新",
+        autoUpdate: "自動更新 (1分鐘)",
+        source: "資料來源",
+        sourceBot: "台灣銀行（中間價）",
+        sourceMock: "模擬資料",
+        updating: "更新中...",
+        offlineMode: "離線模式（模擬資料）",
+        connecting: "連線中...",
+        usdName: "USD - 美元",
+        eurName: "EUR - 歐元",
+        gbpName: "GBP - 英鎊",
+        jpyName: "JPY - 日圓",
+        twdName: "TWD - 新台幣",
+        cnyName: "CNY - 人民幣",
+        krwName: "KRW - 韓元",
+        audName: "AUD - 澳幣",
+        cadName: "CAD - 加幣",
+        chfName: "CHF - 瑞士法郎",
+        hkdName: "HKD - 港幣",
+        sgdName: "SGD - 新加坡幣"
+    }
+};
+
+// Get current language from localStorage or default to English
+let currentLang = localStorage.getItem('language') || 'en';
+
+// Function to switch language
+function switchLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('language', lang);
+    updateLanguage();
+}
+
+// Function to update all text elements based on current language
+function updateLanguage() {
+    const t = translations[currentLang];
+
+    // Update header
+    document.querySelector('h1').textContent = t.title;
+    document.querySelector('.subtitle').textContent = t.subtitle;
+
+    // Update labels
+    document.querySelector('label[for="amount"]').textContent = t.amount;
+    document.querySelector('label[for="from-currency"]').textContent = t.from;
+    document.querySelector('label[for="to-currency"]').textContent = t.to;
+
+    // Update swap button aria-label
+    document.getElementById('swap-btn').setAttribute('aria-label', t.swapCurrencies);
+
+    // Update currency options
+    updateCurrencyOptions();
+
+    // Update footer text
+    const autoUpdateText = document.querySelector('.auto-update-text');
+    if (autoUpdateText) {
+        autoUpdateText.textContent = t.autoUpdate;
+    }
+
+    // Update last updated text if it's showing "Updating..." or "Connecting..."
+    const lastUpdatedText = lastUpdated.textContent;
+    if (lastUpdatedText === translations.en.updating || lastUpdatedText === translations.zh.updating) {
+        lastUpdated.textContent = t.updating;
+    } else if (lastUpdatedText === translations.en.connecting || lastUpdatedText === translations.zh.connecting) {
+        lastUpdated.textContent = t.connecting;
+    } else if (lastUpdatedText.includes('Offline Mode') || lastUpdatedText.includes('離線模式')) {
+        lastUpdated.textContent = t.offlineMode;
+    }
+
+    // Update source text
+    const sourceText = document.getElementById('rate-source').textContent;
+    if (sourceText.includes('Bank of Taiwan') || sourceText.includes('台灣銀行')) {
+        document.getElementById('rate-source').textContent = `${t.source}: ${t.sourceBot} `;
+    } else if (sourceText.includes('Mock Data') || sourceText.includes('模擬資料')) {
+        document.getElementById('rate-source').textContent = `${t.source}: ${t.sourceMock} `;
+    } else if (sourceText.includes('Connecting') || sourceText.includes('連線中')) {
+        document.getElementById('rate-source').textContent = `${t.source}: ${t.connecting} `;
+    }
+
+    // Update language toggle button text
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.textContent = currentLang === 'en' ? '中' : 'EN';
+    }
+}
+
+// Function to update currency option text
+function updateCurrencyOptions() {
+    const t = translations[currentLang];
+    const selects = [document.getElementById('from-currency'), document.getElementById('to-currency')];
+
+    selects.forEach(select => {
+        Array.from(select.options).forEach(option => {
+            const currency = option.value;
+            option.textContent = t[currency.toLowerCase() + 'Name'] || option.textContent;
+        });
+    });
+}
+
 const amountInput = document.getElementById('amount');
 const fromCurrency = document.getElementById('from-currency');
 const toCurrency = document.getElementById('to-currency');
@@ -92,14 +229,14 @@ function updateUI() {
     // Format result based on currency (JPY usually 0 decimals, others 2)
     const decimals = (to === 'JPY' || to === 'KRW' || to === 'VND') ? 0 : 2;
 
-    resultAmount.textContent = `${result.toFixed(decimals)} ${to}`;
-    conversionRate.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+    resultAmount.textContent = `${result.toFixed(decimals)} ${to} `;
+    conversionRate.textContent = `1 ${from} = ${rate.toFixed(4)} ${to} `;
 }
 
 function updateLastUpdatedTime() {
     const now = new Date();
     const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    lastUpdated.textContent = `Last updated: ${timeString}`;
+    lastUpdated.textContent = `Last updated: ${timeString} `;
     lastUpdated.style.color = 'var(--text-light)';
 
     // Reset animation
@@ -149,9 +286,16 @@ autoUpdateToggle.addEventListener('change', () => {
         startAutoUpdate();
     } else {
         if (updateInterval) clearInterval(updateInterval);
-        lastUpdated.textContent = 'Auto-update paused';
+        const t = translations[currentLang];
+        lastUpdated.textContent = currentLang === 'en' ? 'Auto-update paused' : '自動更新已暫停';
     }
 });
 
+// Language toggle event listener
+document.getElementById('lang-toggle').addEventListener('click', () => {
+    switchLanguage(currentLang === 'en' ? 'zh' : 'en');
+});
+
 // Initialize
+updateLanguage(); // Set initial language
 startAutoUpdate();
