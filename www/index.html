@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Currency Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <div class="converter-card glass">
+            <header>
+                <h1>Currency Converter</h1>
+                <p class="subtitle">Live Exchange Rates</p>
+            </header>
+
+            <div class="converter-body">
+                <div class="input-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" value="1" min="0" step="any">
+                </div>
+
+                <div class="currency-row">
+                    <div class="select-group">
+                        <label for="from-currency">From</label>
+                        <div class="custom-select">
+                            <select id="from-currency">
+                                <option value="USD" selected>USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="TWD">TWD - New Taiwan Dollar</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                                <option value="KRW">KRW - South Korean Won</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="HKD">HKD - Hong Kong Dollar</option>
+                                <option value="SGD">SGD - Singapore Dollar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button id="swap-btn" class="icon-btn" aria-label="Swap currencies">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M17 14L12 9L7 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" transform="rotate(90 12 12)" />
+                        </svg>
+                    </button>
+
+                    <div class="select-group">
+                        <label for="to-currency">To</label>
+                        <div class="custom-select">
+                            <select id="to-currency">
+                                <option value="TWD" selected>TWD - New Taiwan Dollar</option>
+                                <option value="USD">USD - US Dollar</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="GBP">GBP - British Pound</option>
+                                <option value="JPY">JPY - Japanese Yen</option>
+                                <option value="CNY">CNY - Chinese Yuan</option>
+                                <option value="KRW">KRW - South Korean Won</option>
+                                <option value="AUD">AUD - Australian Dollar</option>
+                                <option value="CAD">CAD - Canadian Dollar</option>
+                                <option value="CHF">CHF - Swiss Franc</option>
+                                <option value="HKD">HKD - Hong Kong Dollar</option>
+                                <option value="SGD">SGD - Singapore Dollar</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-container">
+                    <p class="conversion-rate" id="conversion-rate">1 USD = 32.5 TWD</p>
+                    <h2 class="result-amount" id="result-amount">32.50 TWD</h2>
+                </div>
+            </div>
+
+            <footer>
+                <div class="update-info">
+                    <span class="dot"></span>
+                    <span id="last-updated">Updating...</span>
+                </div>
+                <div id="rate-source" class="source-info">Source: Connecting...</div>
+                <div class="auto-update-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="auto-update" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Auto-update (1m)</span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

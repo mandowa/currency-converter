@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.currencyconverter",
+  "appName": "Currency Converter",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
