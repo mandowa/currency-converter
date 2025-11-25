@@ -173,8 +173,38 @@ function useMockRates() {
     document.getElementById('rate-source').textContent = 'Source: Mock Data';
 }
 
+// Fetch BTC Price
+async function fetchBTCPrice() {
+    const btcPriceElement = document.getElementById('btc-price');
+    if (!btcPriceElement) return;
+
+    try {
+        const response = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD');
+        const data = await response.json();
+        
+        if (data.USD) {
+            const price = data.USD.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 2
+            });
+            btcPriceElement.textContent = price;
+            btcPriceElement.style.color = 'var(--primary-color)';
+        } else {
+            throw new Error('No data');
+        }
+    } catch (error) {
+        console.error('Error fetching BTC price:', error);
+        btcPriceElement.textContent = 'Unavailable';
+        btcPriceElement.style.color = 'var(--error-color)';
+    }
+}
+
 // Fetch Exchange Rates from Local Proxy
 async function fetchRates() {
+    // Fetch BTC price alongside currency rates
+    fetchBTCPrice();
+
     try {
         const response = await fetch('/api/rates');
         const data = await response.json();

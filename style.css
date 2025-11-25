@@ -212,6 +212,37 @@ input[type="number"]:focus {
     position: relative;
 }
 
+/* BTC Price Widget */
+.btc-price-container {
+    margin-top: 24px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.btc-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.btc-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
 select {
     width: 100%;
     padding: 12px;
