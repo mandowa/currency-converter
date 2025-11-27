@@ -1,0 +1,445 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #a855f7;
+    --accent-color: #ec4899;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --bg-color: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background Animation */
+.background-blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary-color);
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--secondary-color);
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -2s;
+}
+
+.blob-3 {
+    width: 350px;
+    height: 350px;
+    background: var(--accent-color);
+    bottom: 20%;
+    left: 30%;
+    animation-delay: -4s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(20px, 40px) scale(1.1);
+    }
+}
+
+/* Glassmorphism Card */
+.container {
+    padding: 20px;
+    width: 100%;
+    max-width: 480px;
+}
+
+.converter-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+    padding: 32px;
+    transition: transform 0.3s ease;
+}
+
+.converter-card:hover {
+    transform: translateY(-5px);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.header-content>div {
+    flex: 1;
+    min-width: 0;
+}
+
+h1 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.lang-toggle {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    min-width: 44px;
+    text-align: center;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.lang-toggle:active {
+    transform: translateY(0);
+}
+
+/* Inputs */
+.input-group {
+    margin-bottom: 24px;
+}
+
+label {
+    display: block;
+    color: var(--text-light);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 16px;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    background: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Currency Selectors */
+.currency-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.select-group {
+    flex: 1;
+}
+
+.custom-select {
+    position: relative;
+}
+
+/* BTC Price Widget */
+.btc-price-container {
+    margin-top: 24px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.btc-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.btc-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 18px;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color);
+    cursor: pointer;
+    appearance: none;
+    transition: all 0.2s;
+}
+
+select:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.icon-btn {
+    background: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--primary-color);
+    margin-bottom: 2px;
+}
+
+.icon-btn:hover {
+    transform: rotate(180deg);
+    background: var(--primary-color);
+    color: #fff;
+}
+
+/* Results */
+.result-container {
+    text-align: center;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+
+.conversion-rate {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.result-amount {
+    color: var(--text-color);
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Footer */
+footer {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.update-info {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.source-info {
+    font-size: 10px;
+    color: var(--text-light);
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+/* Toggle Switch Section */
+.auto-update-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auto-update-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.auto-update-text {
+    font-size: 10px;
+    color: var(--text-light);
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--primary-color);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(16px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
