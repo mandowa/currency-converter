@@ -181,7 +181,7 @@ async function fetchBTCPrice() {
     try {
         const response = await fetch('https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD');
         const data = await response.json();
-        
+
         if (data.USD) {
             const price = data.USD.toLocaleString('en-US', {
                 style: 'currency',
