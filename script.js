@@ -27,7 +27,9 @@ const translations = {
         cadName: "CAD - Canadian Dollar",
         chfName: "CHF - Swiss Franc",
         hkdName: "HKD - Hong Kong Dollar",
-        sgdName: "SGD - Singapore Dollar"
+        hkdName: "HKD - Hong Kong Dollar",
+        sgdName: "SGD - Singapore Dollar",
+        thbName: "THB - Thai Baht"
     },
     zh: {
         title: "貨幣轉換器",
@@ -56,7 +58,9 @@ const translations = {
         cadName: "CAD - 加幣",
         chfName: "CHF - 瑞士法郎",
         hkdName: "HKD - 港幣",
-        sgdName: "SGD - 新加坡幣"
+        hkdName: "HKD - 港幣",
+        sgdName: "SGD - 新加坡幣",
+        thbName: "THB - 泰銖"
     }
 };
 
@@ -162,7 +166,9 @@ function useMockRates() {
         'CAD': 23.8,
         'CHF': 36.5,
         'HKD': 4.15,
-        'SGD': 24.2
+        'HKD': 4.15,
+        'SGD': 24.2,
+        'THB': 0.95
     };
 
     updateUI();
